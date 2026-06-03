@@ -1,0 +1,754 @@
+/* SwarmDB Demo Website - CSS Style Sheet */
+:root {
+    --bg-main: #060913;
+    --bg-card: rgba(14, 20, 38, 0.65);
+    --bg-card-hover: rgba(20, 28, 54, 0.8);
+    --border-color: rgba(255, 255, 255, 0.07);
+    --border-neon: rgba(118, 185, 0, 0.25);
+    --border-neon-hover: rgba(118, 185, 0, 0.5);
+    
+    --color-nvidia: #76B900;
+    --color-nvidia-glow: rgba(118, 185, 0, 0.4);
+    --color-text-primary: #f3f4f6;
+    --color-text-secondary: #9ca3af;
+    --color-text-muted: #6b7280;
+    
+    --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'Fira Code', monospace;
+    
+    --shadow-glow: 0 0 25px rgba(118, 185, 0, 0.15);
+    --shadow-glow-strong: 0 0 35px rgba(118, 185, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(118, 185, 0, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(118, 185, 0, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(118, 185, 0, 0.5);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Layout Containers */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(6, 9, 19, 0.8);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    font-family: var(--font-heading);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--color-nvidia);
+}
+
+.logo-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-nvidia);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-nvidia);
+}
+
+.badge-hackathon {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(118, 185, 0, 0.1);
+    color: var(--color-nvidia);
+    border: 1px solid rgba(118, 185, 0, 0.3);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 1rem 4rem 1rem;
+    position: relative;
+}
+
+.hero-subtitle {
+    font-family: var(--font-mono);
+    color: var(--color-nvidia);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 40%, #a3e635 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Glassmorphism Cards */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(16px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.card-glowing {
+    border: 1px solid var(--border-neon);
+    box-shadow: var(--shadow-glow);
+}
+
+.card-glowing:hover {
+    border-color: var(--border-neon-hover);
+    box-shadow: var(--shadow-glow-strong);
+}
+
+/* Simulator Grid */
+.simulator-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .simulator-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.visualizer-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.canvas-wrapper {
+    background: #020408;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Live Stats */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.stat-item {
+    background: rgba(2, 4, 8, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.stat-value.highlight {
+    color: var(--color-nvidia);
+}
+
+/* Control Panel */
+.controls-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.control-value {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-nvidia);
+    background: rgba(118, 185, 0, 0.1);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* Slider Custom Styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-nvidia);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(118, 185, 0, 0.5);
+    transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Segmented Buttons (Toggles) */
+.toggle-group {
+    display: flex;
+    background: rgba(2, 4, 8, 0.5);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem;
+    border-radius: 8px;
+    gap: 0.25rem;
+}
+
+.toggle-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-btn.active {
+    background: var(--color-nvidia);
+    color: #000000;
+    box-shadow: 0 4px 12px rgba(118, 185, 0, 0.25);
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 4rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Real-World Complexity Comparison Section */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.comparison-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comparison-title {
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+}
+
+.complexity-badge {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 4px;
+}
+
+.complexity-badge.good {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+}
+
+/* Pros and Cons Matrix */
+.outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .outcomes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.outcome-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.outcome-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.outcome-title-row svg {
+    color: var(--color-nvidia);
+}
+
+.outcome-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-secondary);
+}
+
+.outcome-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.outcome-list-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.outcome-list-title.pro {
+    color: #10b981;
+}
+
+.outcome-list-title.con {
+    color: #f43f5e;
+}
+
+.outcome-item {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.outcome-item svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.outcome-item.pro svg {
+    color: #10b981;
+}
+
+.outcome-item.con svg {
+    color: #f43f5e;
+}
+
+/* Explainer (Beginners Friendly) */
+.explainer-card {
+    margin-bottom: 4rem;
+}
+
+.explainer-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .explainer-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+.step-card {
+    background: rgba(2, 4, 8, 0.3);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.step-num {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-nvidia);
+    opacity: 0.8;
+}
+
+.step-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.step-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* GPU Visual Design Block */
+.gpu-visual-container {
+    background: radial-gradient(circle at center, rgba(118, 185, 0, 0.08) 0%, transparent 70%);
+    border: 1px solid var(--border-neon);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .gpu-visual-container {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+    }
+}
+
+.gpu-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.gpu-visual-graphic {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    background: rgba(2, 4, 8, 0.6);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gpu-core {
+    background: rgba(118, 185, 0, 0.1);
+    border: 1px solid rgba(118, 185, 0, 0.3);
+    border-radius: 6px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    position: relative;
+    overflow: hidden;
+}
+
+.gpu-core::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(118, 185, 0, 0.15), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.5s;
+}
+
+.gpu-visual-graphic:hover .gpu-core::after {
+    transform: translate(50%, 50%) rotate(45deg);
+}
+
+.core-id {
+    font-weight: 700;
+    color: var(--color-nvidia);
+}
+
+.core-thread {
+    font-size: 0.65rem;
+    color: var(--color-text-secondary);
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer span {
+    color: var(--color-nvidia);
+}
+
+/* Team Introduction Section */
+.team-container {
+    margin: -1.5rem auto 3.5rem auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.team-card {
+    background: linear-gradient(135deg, rgba(14, 20, 38, 0.8) 0%, rgba(6, 9, 19, 0.9) 100%);
+    border: 1px solid var(--border-neon);
+    box-shadow: var(--shadow-glow);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-nvidia), transparent);
+}
+
+.team-badge-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-label {
+    font-family: var(--font-mono);
+    color: var(--color-nvidia);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.team-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.25rem;
+}
+
+.team-members-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.member-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.member-item:hover {
+    background: rgba(118, 185, 0, 0.06);
+    border-color: rgba(118, 185, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(118, 185, 0, 0.05);
+}
+
+.member-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(118, 185, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-nvidia);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.member-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
